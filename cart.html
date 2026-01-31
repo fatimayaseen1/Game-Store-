@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"> GameStore</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="summary.html">Order Summary</a>
+    </nav>
+  </header>
+
+  <main class="main-content cart-layout">
+    <div class="cart-items" id="cartItems"></div>
+    
+
+    
+     
+    <div class="cart-summary">
+      <h2>Order Summary</h2>
+      <p>Total: $<span id="totalPrice">0.00</span></p>
+     
+      <button onclick="confirmOrder()">Confirm Order</button>
+
+    </div>
+  </main>
+  
+
+  <script src="js/main.js"></script>
+  <script src="js/cartItems.js"></script>
+
+</body>
+</html>

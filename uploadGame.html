@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Game - Game Store</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"> GameStore</div>
+    <nav class="nav-links">
+    
+    </nav>
+  </header>
+
+  <main class="form-container">
+    <form id="uploadGameForm">
+      <h1>Upload a New Game</h1>
+      
+      <input type="file" id="gameImage" name="gameImage" accept="image/*" onchange="previewImage(event)" required />
+      <div id="imagePreview" style="display: none;"></div>
+
+      <input type="text" id="gameTitle" name="title" placeholder="Title" required />
+      <textarea id="gameDescription" name="description" placeholder="Description" required></textarea>
+      <input type="number" id="gamePrice" name="price" placeholder="Price" required />
+
+      <select id="gameGenre" name="genre" required>
+        <option value="Action">Action</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Strategy">Strategy</option>
+      </select>
+
+      <select id="gamePlatform" name="platform" required>
+        <option value="PC">PC</option>
+        <option value="PlayStation">PlayStation</option>
+        <option value="Xbox">Xbox</option>
+      </select>
+
+      <button type="submit">Submit Game</button>
+    </form>
+  </main>
+
+  <script src="js/game.js"></script>
+</body>
+</html>

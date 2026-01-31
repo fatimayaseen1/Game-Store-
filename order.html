@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Orders</title>
+  <link rel="stylesheet" href="CSS/styles.css" />
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo"> GameStore</div>
+        <nav class="nav-links">
+          <a href="adminHome.html">Home</a>
+        
+        </nav>
+      </header>
+  <h1 style="text-align:center;">Your Orders</h1>
+
+  <div class="tabs">
+    <div class="tab active" onclick="loadOrders('pending')">Pending</div>
+    <div class="tab" onclick="loadOrders('completed')">Completed</div>
+  </div>
+
+  <div id="ordersContainer" class="orders-container">
+    <!-- Orders will be loaded here -->
+  </div>
+
+  <script src="js/orderStatus.js"></script>
+</body>
+</html>

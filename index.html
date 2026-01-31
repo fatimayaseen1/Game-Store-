@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Game Store - Home</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"> GameStore</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
+      <a href="login.html">Sign In</a>
+      <a href="register.html">Register</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <section class="hero">
+      <h1>Free & Featured Games</h1>
+      <div class="filter-bar">
+        <label for="category">Filter by:</label>
+        <select id="category" onchange="filterGames()">
+          <option value="all">All</option>
+          <option value="Action">Action</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Strategy">Strategy</option>
+        </select>
+      </div>
+    </section>
+
+    <section id="gameList" class="game-grid">
+      <!-- Sample Game Card -->
+      <div class="game-card" data-game-id="1" data-game-title="Game 1" data-game-price="20.00" data-game-image="game1.jpg">
+        <img src="game1.jpg" alt="Game 1" />
+        <div class="game-card-content">
+          <h3>Game 1</h3>
+          <p>Action</p>
+          <!-- Add onclick to print a message when the button is clicked -->
+          <button onclick="console.log('Button pressed')">Add</button>
+        </div>
+      </div>
+      <!-- More game cards will go here -->
+    </section>
+  </main>
+
+  <!-- Pop-up for "Added to Cart" -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close-btn">&times;</span>
+      <p id="popup-message">Game has been added to the cart!</p>
+    </div>
+  </div>
+
+  <script src="js/index.js"></script>
+  <script src="js/cart.js"></script> <!-- You can remove this if you don't need cart functionality for now -->
+</body>
+</html>

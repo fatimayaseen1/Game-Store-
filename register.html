@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const passwordInput = document.getElementById("password");
+    const usernameInput = document.getElementById("username");
+    const emailInput = document.getElementById("email");
+    const registerBtn = document.getElementById("registerBtn");
+    const errorText = document.getElementById("passwordError");
+
+    const hasLetter = document.getElementById("hasLetter");
+    const hasNumber = document.getElementById("hasNumber");
+    const hasSpecial = document.getElementById("hasSpecial");
+    const hasLength = document.getElementById("hasLength");
+
+    function validateForm() {
+      const password = passwordInput.value;
+
+      const letter = /[a-zA-Z]/.test(password);
+      const number = /[0-9]/.test(password);
+      const special = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+      const length = password.length >= 8;
+
+      hasLetter.checked = letter;
+      hasNumber.checked = number;
+      hasSpecial.checked = special;
+      hasLength.checked = length;
+
+      const allValid = letter && number && special && length;
+
+      errorText.style.display = allValid ? "none" : "block";
+      passwordInput.style.borderColor = allValid ? "#444" : "red";
+
+      registerBtn.disabled = !(
+        usernameInput.value.trim() &&
+        emailInput.value.trim() &&
+        allValid
+      );
+    }
+
+    passwordInput.addEventListener("input", validateForm);
+    usernameInput.addEventListener("input", validateForm);
+    emailInput.addEventListener("input", validateForm);
+  });
+</script>
+
+<body>
+  <header class="navbar">
+    <div class="logo">🎮 GameStore</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+    </nav>
+  </header>
+
+  <main class="form-container">
+    <h1>Create Account</h1>
+    <form id="registerForm">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <p id="passwordError" style="color: red; display: none;">Please make password strong</p>
+    
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="hasLetter" disabled /> Alphabet</label>
+        <label><input type="checkbox" id="hasNumber" disabled /> Number</label>
+        <label><input type="checkbox" id="hasSpecial" disabled /> Special Character</label>
+        <label><input type="checkbox" id="hasLength" disabled /> 8 Characters</label>
+      </div>
+    
+      <button type="submit" id="registerBtn" disabled>Register</button>
+
+    </form>
+    
+  </main>
+  <script src="js/register.js"></script>
+
+</body>
+</html>

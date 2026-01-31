@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Summary</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">🎮 GameStore</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+    </nav>
+  </header>
+
+  <main class="form-container">
+    <div class="order-summary-card">
+      <h1>Order Summary</h1>
+      <div id="summaryItems"></div>
+      <p>Total Cost: $<span id="summaryTotal">0.00</span></p>
+      <button onclick="confirmOrder()">Confirm Order</button>
+      <button onclick="cancelOrder()">Cancel</button>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+
+  <!-- ✅ Add your confirmOrder script here -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the total price from localStorage
+        const totalPrice = localStorage.getItem('total_price');
+        
+        // Check if the totalPrice is available
+        if (totalPrice) {
+            // Display the total price in the 'summaryTotal' element
+            document.getElementById('summaryTotal').innerText = totalPrice;
+        } else {
+            console.error("Total price not found in localStorage.");
+        }
+    });
+  </script>
+  <script>
+    // Function to confirm order and save it
+    function confirmOrder() {
+  const userId = localStorage.getItem('user_id');
+  console.log("User ID:", userId);
+//I also want to check if the userId is null or undefined
+  if (!userId || userId === 'null'|| userId === 'undefined') {
+    console.log("user id is ", userId);
+    window.location.href = 'login.html';
+    return;
+  }
+  const totalPrice = localStorage.getItem('total_price');
+  if (!totalPrice) {
+    alert("Total amount is missing. Please return to the cart.");
+    return;
+  }
+  //
+  const currentDate = new Date().toISOString();
+
+  const orderData = {
+    user_id: userId,
+    order_date: currentDate,
+    total_amount: parseFloat(totalPrice),
+    status: "pending",
+  };
+  console.log("Order Data:", orderData);
+
+  fetch('http://localhost:3000/orders/add', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(orderData),
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert("Order has been successfully placed!");
+      window.location.href = 'index.html';
+    } else {
+      alert("There was an issue placing your order. Please try again.");
+      console.error("Error:", data.error);
+    }
+  })
+  .catch(error => {
+    console.error('Error placing order:', error);
+    alert("An error occurred. Please try again.");
+  });
+}
+</script>
+</body>
+</html>
